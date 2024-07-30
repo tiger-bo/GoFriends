@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package chatmsg;
+
+option go_package = "./chatmsg";
+
+
+message User {
+  int32 id = 1;       // 用户ID
+  string name = 2;    // 用户名称
+}
+
+
+message Message {
+  int32 id = 1;       // 消息ID
+  int32 user_id = 2;  // 发送者ID
+  string content = 3; // 消息内容
+  int64 timestamp = 4;// 消息发送时间
+}
+
+
+message ChatRoomState {
+  int32 room_id = 1;         // 聊天室ID
+  repeated User users = 2;   // 用户列表
+  repeated Message messages = 3; // 消息列表
+}
+
+
+message LoginRequest {
+  int32 room_id =1;
+  User user = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+}
